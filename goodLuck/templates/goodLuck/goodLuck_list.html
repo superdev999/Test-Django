@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load staticfiles %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/main.css' %}" />
+<script src="{% static 'polls/js/jquery-1.11.3.js' %}"></script>
+<script src="{% static 'polls/js/bootstrap.min.js' %}"></script>
+
+</head>
+<body> 		
+	<div class="container">		
+		<div class="col-md-12">
+			<center>
+			<h1 class="title-1">Test Project - Good Luck!</h1>
+			
+			<div class="row">
+			<h2>Dogs and Cats</h2>
+				<div class="col-md-6">
+					<a href="{% url 'goodLuck:goodLuck_new' %}" class="newBtn">Add</a>
+				</div>
+				<div class="col-md-6">
+					<a href="{% url 'goodLuck:export_users_csv' %}">Export to CSV</a>
+				</div>
+			</div>
+
+			<table class="table-1" style="width:80%">
+				<tr>
+					<td class="td-th" style="width:25%">Name</td>
+					<td class="td-th" style="width:25%">Birthday</td>
+					<td class="td-th" style="width:25%">Edit</td>
+					<td class="td-th" style="width:25%">Delete</td>
+				</tr>
+				{% for goods in user_list %}
+				<tr style="text-align:center">
+					<td style="width:25%">{{ goods.name }}</td>
+					<td style="width:25%">{{ goods.birthday}}</td>
+					<td style="width:25%"><a href="{% url 'goodLuck:goodLuck_edit' goods.id %}">edit</a></td>
+					<td style="width:25%"><a href="{% url 'goodLuck:goodLuck_delete' goods.id %}">delete</a></td>
+				</tr>
+			    {% endfor %}
+			</table>			
+			</center>
+		</div>
+	</div>
+</body>
+</html>
